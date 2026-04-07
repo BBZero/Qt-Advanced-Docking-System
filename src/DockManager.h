@@ -438,7 +438,7 @@ public:
 	 * dock area widget is created.
 	 */
 	CDockAreaWidget* addDockWidgetTab(DockWidgetArea area,
-		CDockWidget* Dockwidget);
+		CDockWidget* Dockwidget, const bool activeted = true);
 
 	/**
 	 * This function will add the given Dockwidget to the given DockAreaWidget
@@ -447,7 +447,7 @@ public:
 	 * inserted at the specified position.
 	 */
 	CDockAreaWidget* addDockWidgetTabToArea(CDockWidget* Dockwidget,
-		CDockAreaWidget* DockAreaWidget, int Index = -1);
+		CDockAreaWidget* DockAreaWidget, int Index = -1, const bool activeted = true);
 
 	/**
 	 * Adds the given DockWidget floating and returns the created

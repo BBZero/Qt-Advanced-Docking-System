@@ -169,7 +169,7 @@ public:
 	 * Adds dock widget to a existing DockWidgetArea
 	 */
 	CDockAreaWidget* addDockWidgetToDockArea(DockWidgetArea area, CDockWidget* Dockwidget,
-		CDockAreaWidget* TargetDockArea, int Index = -1);
+		CDockAreaWidget* TargetDockArea, int Index = -1, const bool activeted = true);
 
 	/**
 	 * Add dock area to this container
@@ -1350,11 +1350,11 @@ void DockContainerWidgetPrivate::dumpRecursive(int level, QWidget* widget)
 
 //============================================================================
 CDockAreaWidget* DockContainerWidgetPrivate::addDockWidgetToDockArea(DockWidgetArea area,
-	CDockWidget* Dockwidget, CDockAreaWidget* TargetDockArea, int Index)
+	CDockWidget* Dockwidget, CDockAreaWidget* TargetDockArea, int Index, const bool activeted)
 {
 	if (CenterDockWidgetArea == area)
 	{
-		TargetDockArea->insertDockWidget(Index, Dockwidget);
+		TargetDockArea->insertDockWidget(Index, Dockwidget, activeted);
 		TargetDockArea->updateTitleBarVisibility();
 		return TargetDockArea;
 	}
@@ -1442,7 +1442,7 @@ CDockContainerWidget::~CDockContainerWidget()
 
 //============================================================================
 CDockAreaWidget* CDockContainerWidget::addDockWidget(DockWidgetArea area, CDockWidget* Dockwidget,
-	CDockAreaWidget* DockAreaWidget, int Index)
+	CDockAreaWidget* DockAreaWidget, int Index, const bool activeted)
 {
 	auto TopLevelDockWidget = topLevelDockWidget();
 	CDockAreaWidget* OldDockArea = Dockwidget->dockAreaWidget();
@@ -1455,7 +1455,7 @@ CDockAreaWidget* CDockContainerWidget::addDockWidget(DockWidgetArea area, CDockW
 	CDockAreaWidget* DockArea;
 	if (DockAreaWidget)
 	{
-		DockArea = d->addDockWidgetToDockArea(area, Dockwidget, DockAreaWidget, Index);
+		DockArea = d->addDockWidgetToDockArea(area, Dockwidget, DockAreaWidget, Index, activeted);
 	}
 	else
 	{
